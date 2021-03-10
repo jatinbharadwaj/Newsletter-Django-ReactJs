@@ -6,6 +6,39 @@
 - Display: Display all subscriber.
 - Status: Show status of the subscription
 
+## Project Archietecture
+
+```
+├── backend
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── db.sqlite3
+├── manage.py
+└── newsletter
+    ├── admin.py
+    ├── apps.py
+    ├── __init__.py
+    ├── migrations
+    ├── models.py
+    ├── serializers.py
+    ├── tests.py
+    └── views.py
+├── frontend
+    ├── node_modules
+    ├── package.json
+    ├── package-lock.json
+    ├── public
+    ├── README.md
+    └── src
+├── Pipfile
+├── Pipfile.lock
+├── Readme.md
+└── requirements.txt
+```
+
 ## API Documentation
 
 1. URLs
