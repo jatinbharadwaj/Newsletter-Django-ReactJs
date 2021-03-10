@@ -17,7 +17,6 @@
   http://localhost:8000/api/
   http://localhost:8000/api/newsletters/
   http://localhost:8000/api/newsletters/[:id]
-
   ```
 
 - Frontend
@@ -35,6 +34,10 @@
 `GET /api/newsletters/[:id]`- return mentioned id with
 respective email registered
 
+3. Status Codes
+   200- Ok status
+   400- Bad call
+
 ## How to run
 
 ### Backend
@@ -45,12 +48,15 @@ respective email registered
 git clone https://github.com/jatinbharadwaj/Newsletter-Django-ReactJs.git
 ```
 
-- Create and start virtual environment
+- Create and start virtual environment,
 
 ```python
 virtualenv env --no-site-packages
 source env/bin/activate
 ```
+
+If above step won't work then
+[Follow these steps for making virtual environment](https://www.javatpoint.com/django-virtual-environment-setup)
 
 - Install project Dependencies
 
@@ -94,6 +100,12 @@ python manage.py runserver
 
 ```
 cd frontend
+```
+
+- install npm packages
+
+```npm
+npm install
 ```
 
 - start frontend server
