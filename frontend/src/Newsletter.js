@@ -1,28 +1,40 @@
 import React, { useEffect, useState } from "react";
+import "react-notifications/lib/notifications.css";
+
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 import axios from "axios";
 import "./Newsletter.css";
 
 function Newsletter() {
-  const [emails, setEmails] = useState([]);
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    (async function fetchData() {
-      await axios
-        .get("http://localhost:8000/api/newsletters/")
-        .then((res) => setEmails(res.data))
-        .catch((err) => console.log(err));
-      console.log("here", emails);
-    })();
-  }, []);
+  const [hasError, setHasError] = useState(false);
+  const { loading, setLoading } = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     const em = { email: email };
     axios
       .post("http://localhost:8000/api/newsletters/", em)
-      .catch((e) => alert("duplicate value entered"));
+      .then((res) => {
+        if (res.status === 201) {
+          NotificationManager.success(
+            `You ${email} has subscribed`,
+            "Subscribed!"
+          );
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          NotificationManager.error(
+            `Your Email:${email} has already been subscribed, please enter another email`,
+            "Error Occured!"
+          );
+        }
+      });
     console.log(`Form submitted, ${email}`);
+    e.preventDefault();
   };
   return (
     <div className="container">
@@ -36,9 +48,8 @@ function Newsletter() {
         ></input>
         <button type="submit">Subscribe</button>
       </form>
-      {emails.map((e) => (
-        <p>{e.email}</p>
-      ))}
+      <>{loading ? <div>Loading...</div> : <></>}</>
+      <NotificationContainer />
     </div>
   );
 }
