@@ -22,6 +22,7 @@ function Newsletter() {
             `You ${email} has subscribed`,
             "Subscribed!"
           );
+          setEmail("");
         }
       })
       .catch((err) => {
@@ -41,11 +42,11 @@ function Newsletter() {
         <input
           type="email"
           name="email"
-          placeholder="Enter Your Email"
+          placeholder="Enter Your Email to subscribe"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         ></input>
-        <button type="submit">Subscribe</button>
+        <button type="submit"> 📧 Subscribe</button>
       </form>
       <>{loading ? <div>Loading...</div> : <></>}</>
       <NotificationContainer />
