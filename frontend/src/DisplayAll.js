@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./DisplayAll.css";
 
 function DisplayAll() {
   const [emails, setEmails] = useState([]);
@@ -13,11 +14,11 @@ function DisplayAll() {
     })();
   }, []);
 
+  const listItems = emails.map((e) => <li key={e.id}>{e.email}</li>);
+
   return (
-    <div>
-      {emails.map((e) => (
-        <p>{e.email}</p>
-      ))}
+    <div className="container">
+      <ul>{listItems}</ul>
     </div>
   );
 }
