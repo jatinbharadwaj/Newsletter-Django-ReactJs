@@ -10,7 +10,6 @@ import "./Newsletter.css";
 
 function Newsletter() {
   const [email, setEmail] = useState("");
-  const [hasError, setHasError] = useState(false);
   const { loading, setLoading } = useState(false);
 
   const handleSubmit = (e) => {

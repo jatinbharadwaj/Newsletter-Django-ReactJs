@@ -1,7 +1,8 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function DisplayAll() {
-  //   const [emails, setEmails] = useState([]);
+  const [emails, setEmails] = useState([]);
   useEffect(() => {
     (async function fetchData() {
       await axios
@@ -11,7 +12,14 @@ function DisplayAll() {
       console.log("here", emails);
     })();
   }, []);
-  return <div></div>;
+
+  return (
+    <div>
+      {emails.map((e) => (
+        <p>{e.email}</p>
+      ))}
+    </div>
+  );
 }
 
 export default DisplayAll;
