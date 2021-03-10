@@ -13,7 +13,7 @@ function Newsletter() {
   const { loading, setLoading } = useState(false);
 
   const handleSubmit = (e) => {
-    const em = { email: email };
+    const em = { email: email.toLowerCase() };
     axios
       .post("http://localhost:8000/api/newsletters/", em)
       .then((res) => {
