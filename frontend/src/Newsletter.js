@@ -46,7 +46,10 @@ function Newsletter() {
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         ></input>
-        <button type="submit"> 📧 Subscribe</button>
+        <button type="submit" disabled={!email}>
+          {" "}
+          📧 Subscribe
+        </button>
       </form>
       <>{loading ? <div>Loading...</div> : <></>}</>
       <NotificationContainer />
