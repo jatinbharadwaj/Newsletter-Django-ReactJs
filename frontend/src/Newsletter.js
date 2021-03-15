@@ -77,7 +77,7 @@ function Newsletter() {
           value={age}
           onChange={(e) => setAge(e.currentTarget.value)}
         />
-        <button type="submit" disabled={!email}>
+        <button type="submit" disabled={!email && !age}>
           {" "}
           📧 Subscribe
         </button>
