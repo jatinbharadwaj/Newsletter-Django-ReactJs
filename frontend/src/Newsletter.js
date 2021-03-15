@@ -10,10 +10,22 @@ import "./Newsletter.css";
 
 function Newsletter() {
   const [email, setEmail] = useState("");
+  const [age, setAge] = useState();
+  const [error, setError] = useState(false);
+  const [errormsg, setErrormsg] = useState("");
   const { loading, setLoading } = useState(false);
 
-  const handleSubmit = (e) => {
-    const em = { email: email.toLowerCase() };
+  function validAge(age) {
+    if (parseInt(age) < 1) {
+      return false;
+    } else if (!age) {
+      return false;
+    }
+    return true;
+  }
+
+  function sendData() {
+    const em = { email: email.toLowerCase(), age: age };
     axios
       .post("http://localhost:8000/api/newsletters/", em)
       .then((res) => {
@@ -31,9 +43,21 @@ function Newsletter() {
             `Your Email:${email} has already been subscribed, please enter another email`,
             "Error Occured!"
           );
+        } else if (err.response.status === 500) {
+          NotificationManager.error(errormsg, "Error Occured");
         }
       });
+
     console.log(`Form submitted, ${email}`);
+  }
+
+  const handleSubmit = (e) => {
+    // Validate email and Age
+    if (validAge(age)) {
+      sendData();
+    } else {
+      NotificationManager.error("Invalid Age", "Error Occured!");
+    }
     e.preventDefault();
   };
   return (
@@ -46,6 +70,13 @@ function Newsletter() {
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         ></input>
+
+        <input
+          type="text"
+          placeholder="Enter your Age"
+          value={age}
+          onChange={(e) => setAge(e.currentTarget.value)}
+        />
         <button type="submit" disabled={!email}>
           {" "}
           📧 Subscribe

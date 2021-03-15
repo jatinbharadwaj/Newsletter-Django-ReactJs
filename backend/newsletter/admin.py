@@ -3,6 +3,6 @@ from .models import newsletter
 
 # Register your models here.
 class newsletterAdmin(admin.ModelAdmin):
-    list_display = ('email',)
+    list_display = ('email','age')
 
 admin.site.register(newsletter,newsletterAdmin)

@@ -14,7 +14,11 @@ function DisplayAll() {
     })();
   }, []);
 
-  const listItems = emails.map((e) => <li key={e.id}>{e.email}</li>);
+  const listItems = emails.map((e) => (
+    <li key={e.id}>
+      Email-> {e.email} <br /> Age {e.age}
+    </li>
+  ));
 
   return (
     <div className="container">

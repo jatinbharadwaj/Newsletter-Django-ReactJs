@@ -4,4 +4,4 @@ from .models import newsletter
 class newsletterSerializer(serializers.ModelSerializer):
     class Meta:
         model = newsletter
-        fields = ('id','email')
+        fields = ('id','email','age',)
